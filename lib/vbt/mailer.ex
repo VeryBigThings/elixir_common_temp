@@ -225,7 +225,7 @@ defmodule VBT.Mailer do
     quote do
       adapter =
         case Mix.env() do
-          :dev -> Bamboo.LocalAdapter
+          :dev -> Keyword.fetch!(unquote(opts), :adapter)
           :test -> Bamboo.TestAdapter
           :prod -> Keyword.fetch!(unquote(opts), :adapter)
         end
